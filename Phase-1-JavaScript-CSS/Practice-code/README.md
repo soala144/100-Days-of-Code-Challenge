@@ -44,3 +44,6 @@ Set up a basic development environment and practice creating foundational files 
 
 ## Reflection:
 Today’s task was foundational, providing a strong start for more advanced projects in the future phases.
+
+## DAY 4: LOOPS
+I learnt about loops and its types how it can be used based on the problem you want to solve and the iteration rule to be applied. i learnt about the for loops, while loops, for.. while loops, do..while loops, for...in loops and for...of loops and their various syntax.
