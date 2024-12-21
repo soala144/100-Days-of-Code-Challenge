@@ -47,3 +47,15 @@ Today’s task was foundational, providing a strong start for more advanced proj
 
 ## DAY 4: LOOPS
 I learnt about loops and its types how it can be used based on the problem you want to solve and the iteration rule to be applied. i learnt about the for loops, while loops, for.. while loops, do..while loops, for...in loops and for...of loops and their various syntax.
+
+## Day 5: Arrays & Methods
+
+### What I Learned:
+- Declared arrays and accessed their elements.
+- Used methods like `.push()`, `.pop()`, `.length`, and `.indexOf()`.
+
+### Challenges:
+- Understanding the difference between `.pop()` and `.shift()` initially.
+
+### Mini Projects:
+- Created a shopping list with various array operations.
