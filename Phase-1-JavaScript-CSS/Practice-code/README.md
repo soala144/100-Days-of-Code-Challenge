@@ -59,3 +59,20 @@ I learnt about loops and its types how it can be used based on the problem you w
 
 ### Mini Projects:
 - Created a shopping list with various array operations.
+
+
+## Day 6: Functions and its types
+## What I learned:
+- Declared the two types of Functions 
+- How to use parameters of a function to perform task
+- How to use scopes in function
+- calling a function into another function
+
+### Challenges : 
+- Understanding how to call a function into another
+
+## Mini Projects:
+- Create a function to calculate the total cost of items in a cart (price × quantity),    include a discount parameter with a default value.
+- Write a function that accesses both local and global variables. Ensure you understand the differences.
+- Write a function that filters an array of numbers to return only even numbers. Pass the filtering logic as a separate function
+
