@@ -76,3 +76,15 @@ I learnt about loops and its types how it can be used based on the problem you w
 - Write a function that accesses both local and global variables. Ensure you understand the differences.
 - Write a function that filters an array of numbers to return only even numbers. Pass the filtering logic as a separate function
 
+## Day 7: DOM manipulation
+## What I learned:
+- How to manipulate the dom
+- How to change elements in the dom
+- How to Change attributes in the dom
+
+### Challenges : 
+- Targeting an element with it's class
+
+## Mini Projects:
+- To do list
+
