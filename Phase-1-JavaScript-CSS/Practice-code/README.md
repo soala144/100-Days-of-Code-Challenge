@@ -88,3 +88,34 @@ I learnt about loops and its types how it can be used based on the problem you w
 ## Mini Projects:
 - To do list
 
+# Day 8: Events and Event Listeners
+
+## Topics Covered:
+1. Adding event listeners using `addEventListener`.
+2. Handling common events like `click`, `mouseover`, and `keydown`.
+3. Understanding Event Propagation:
+   - Capturing phase.
+   - Target phase.
+   - Bubbling phase.
+4. Event Delegation for dynamic or multiple child elements.
+5. Using `event.stopPropagation()` to control event flow.
+
+## Challenges Faced:
+- Differentiating capturing and bubbling phases during event propagation.
+- Implementing event delegation efficiently.
+- Understanding when and how to stop propagation.
+
+## Mini Projects:
+1. **Background Color Toggle:**
+   - Created buttons to toggle the background color of the page.
+
+2. **Change Text on Click:**
+   - Implemented a button that updates a paragraph's text when clicked.
+
+3. **Event Propagation Demo:**
+   - Used nested elements to demonstrate the capturing and bubbling phases.
+
+4. **Event Delegation with List:**
+   - Built an interactive list to display content on item selection.
+
+
