@@ -118,4 +118,39 @@ I learnt about loops and its types how it can be used based on the problem you w
 4. **Event Delegation with List:**
    - Built an interactive list to display content on item selection.
 
+# Day 10: Async JavaScript Basics
 
+## **What I Learned**
+1. **Asynchronous Programming:**
+   - **Callbacks:** Functions passed as arguments to other functions, executed after the main function completes.
+   - **Promises:** A cleaner way to handle asynchronous operations, with `then` for success and `catch` for errors.
+   - **Async/Await:** Simplifies working with promises, making async code look like synchronous code.
+
+2. **Fetching Data from APIs:**
+   - Using the `fetch()` function to make API requests.
+   - Parsing JSON data from API responses.
+   - Dynamically updating the DOM with fetched data.
+
+---
+
+## **Challenges Faced**
+1. **MIME Type Error:**
+   - Faced issues running the script locally due to MIME type restrictions. Solved by understanding the correct setup for local environments.
+   
+2. **Error Handling:**
+   - Managed unexpected API errors, such as network failures or invalid endpoints, and displayed meaningful messages to the user.
+
+3. **Understanding Promises:**
+   - Initially struggled with the chain of `.then()` and `.catch()` but improved by experimenting with simple examples.
+
+---
+
+## **Mini Project**
+**Random Quote Generator**
+
+### **Description:**
+- A simple app that fetches random quotes from an API and displays them dynamically in the browser.
+
+### **Features:**
+- Fetches a new quote with a button click.
+- Handles errors gracefully if the API request fails.
