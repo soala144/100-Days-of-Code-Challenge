@@ -49,6 +49,7 @@ function displayProducts(products) {
   });
 }
 
+
 // Function to add products to the cart
 function addToCart(productId) {
   const product = allProducts.find((item) => item.id === parseInt(productId));
@@ -72,7 +73,6 @@ function removeFromCart(productId) {
   saveCart(); // Save the updated cart to localStorage
   renderCart(); // Update the cart display
 }
-
 // Function to render the cart in the UI
 function renderCart() {
   cartItemsContainer.innerHTML = ""; // Clear existing cart items
