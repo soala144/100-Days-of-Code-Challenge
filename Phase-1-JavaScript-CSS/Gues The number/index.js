@@ -15,7 +15,7 @@ const randomMessages =() =>{
     }
 
 
-    if(guess.value === random ){
+    if(guess.value === random ){~
         message.innerHTML = `You guessed Correctly, How did u get to know it was ${random}`
 
     }else{
