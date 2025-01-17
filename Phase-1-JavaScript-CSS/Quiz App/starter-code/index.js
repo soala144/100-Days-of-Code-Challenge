@@ -1,54 +1,147 @@
+let currentQuestionIndex = 0;
+let selectedAnswers = {}; // To track the user's answers
+let questions = []; // Placeholder for fetched questions
 
-let currentQuestionIndex = 0
-async function loadQuestions(){
-    try {
-        const response = await fetch('real.json')
-        const questions = await response.json()
-        displayQuestion(questions[currentQuestionIndex])
-        console.log(questions.length)
+// Fetch the questions from the JSON file
+async function fetchQuestions() {
+  try {
+    const response = await fetch("real.json"); // Replace with the path to your JSON file
+    questions = await response.json();
+    initializeQuiz(); // Start the quiz after fetching questions
+  } catch (error) {
+    console.error("Error fetching questions:", error);
+  }
+}
 
-        // Update Buttons Function
-        function updateButtons() {
-            // Disable previous if at the first question 
-            if (currentQuestionIndex === 0) {
-                previousButton.disabled = true
-            } else {
-                previousButton.disabled = false
-            }
+// Display the current question and options
+function displayQuestion(index) {
+  const question = questions[index];
+  const questionElement = document.getElementById("question-container");
+  const optionsElement = document.getElementById("left");
 
-            // disable next if at the last question
-            if (currentQuestionIndex === questions.length - 1) {
-                nextButton.disabled = true
-            } else {
-                nextButton.disabled = false
-            }
-        }
-        // Add the Next Button
-        const nextButton = document.getElementById("next")
-        nextButton.addEventListener("click", () => {
-            
-            currentQuestionIndex++
-            displayQuestion(questions[currentQuestionIndex])
-            updateButtons()
-        })
+  // Display the question
+  questionElement.textContent = `${question.question}`;
 
-    //    Previous button
-        const previousButton = document.getElementById("previous")
-      
-        previousButton.addEventListener("click", () => {
-            currentQuestionIndex--
-            displayQuestion(questions[currentQuestionIndex])
-            updateButtons()
-           
-        })
-    } catch (error) {
-        console.error('Errror loading questions: ', error)
+  // Clear previous options
+  optionsElement.innerHTML = "";
+
+  // Create radio buttons for options
+  question.options.forEach((option, i) => {
+    const optionDiv = document.createElement("div");
+    const optionInput = document.createElement("input");
+    const optionLabel = document.createElement("label");
+
+    // Configure the radio input
+    optionInput.type = "radio";
+    optionInput.name = "option";
+    optionInput.value = option;
+    optionInput.id = `option${i}`;
+
+    // Preselect the user's previous answer (if any)
+    if (selectedAnswers[currentQuestionIndex] === option) {
+      optionInput.checked = true;
     }
+
+    // Configure the label
+    optionLabel.htmlFor = `option${i}`;
+    optionLabel.textContent = `${String.fromCharCode(65 + i)}. ${option}`;
+
+    // Append the input and label to the div
+    optionDiv.classList.add("option");
+    optionDiv.appendChild(optionInput);
+    optionDiv.appendChild(optionLabel);
+
+    // Add the div to the options container
+    optionsElement.appendChild(optionDiv);
+  });
+
+  // Update the question number display
+  const questionNumber = document.getElementById("number");
+  questionNumber.textContent = `Question ${index + 1} of ${questions.length}`;
 }
-//    const questionNumber = document.getElementById("number")
-//     questionNumber.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`
-function displayQuestion(question){
-    const questionContainer = document.getElementById("right")
-    questionContainer.textContent = `${question.question}`
+
+// Update navigation button states
+function updateButtons() {
+  previousButton.disabled = currentQuestionIndex === 0;
+  nextButton.textContent =
+    currentQuestionIndex === questions.length - 1 ? "Submit" : "Next";
 }
-document.addEventListener('DOMContentLoaded', loadQuestions)
+
+
+// Event Listeners for navigation
+const nextButton = document.getElementById("next")
+const restartButton = document.getElementById("restart-quiz");
+restartButton.style.display = "none";
+
+nextButton.addEventListener("click", () => {
+  // Save the selected answer
+  const selectedOption = document.querySelector('input[name="option"]:checked');
+  if (selectedOption) {
+    selectedAnswers[currentQuestionIndex] = selectedOption.value;
+  } else {
+    alert("Please select an option before proceeding.");
+    return; // Do not move to the next question if no option is selected
+  }
+
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    displayQuestion(currentQuestionIndex);
+    updateButtons();
+  } else {
+    calculateScore(); // Show the score when submitting
+  }
+});
+const previousButton = document.getElementById("previous")
+
+previousButton.addEventListener("click", () => {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    displayQuestion(currentQuestionIndex);
+    updateButtons();
+  }
+});
+
+// Calculate and display the score
+function calculateScore() {
+  let score = 0;
+
+  // Compare user's answers with the correct answers
+  questions.forEach((question, index) => {
+    const userAnswer = selectedAnswers[index];
+    const correctAnswer = question.answer;
+
+    // Debugging logs
+    console.log(`User's answer: ${userAnswer}, Correct answer: ${correctAnswer}`);
+
+    if (userAnswer?.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
+      score++;
+    }
+  });
+
+  // Display the score
+  const restartButton = document.getElementById("restart-quiz");
+  const quizContainer = document.getElementById("container");
+  quizContainer.innerHTML = `
+    <h2>Your Score: ${score} / ${questions.length}</h2>
+    <p>Refresh the page to retake the quiz.</p>
+  `;
+  
+
+  
+  restartButton.addEventListener("click", () => {
+  // Reset quiz state
+  currentQuestionIndex = 0;
+  selectedAnswers = {};
+  initializeQuiz(); // Restart the quiz
+});
+}
+
+// Initialize the quiz
+function initializeQuiz() {
+  displayQuestion(currentQuestionIndex);
+  updateButtons();
+}
+
+
+// Fetch questions and start the quiz
+document.addEventListener("DOMContentLoaded", fetchQuestions);
